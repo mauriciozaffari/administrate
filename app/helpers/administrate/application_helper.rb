@@ -1,6 +1,6 @@
 module Administrate
   module ApplicationHelper
-    PLURAL_MANY_COUNT = 2.1
+    PLURAL_COUNT = 2.1
 
     def render_field(field, locals = {})
       locals.merge!(field: field)
@@ -11,7 +11,7 @@ module Administrate
       resource_name.to_s.classify.constantize
     end
 
-    def display_resource_name(resource_name, count: PLURAL_MANY_COUNT, default: nil)
+    def display_resource_name(resource_name, count: PLURAL_COUNT, default: nil)
       default ||= begin
         s = resource_name.to_s
         s = s.pluralize unless count == 1
@@ -22,7 +22,7 @@ module Administrate
         model_name.
         human(
           count: count,
-          default: default
+          default: default,
         )
     end
 
