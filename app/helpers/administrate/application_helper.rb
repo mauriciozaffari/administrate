@@ -11,12 +11,18 @@ module Administrate
       resource_name.to_s.classify.constantize
     end
 
-    def display_resource_name(resource_name)
+    def display_resource_name(resource_name, count: PLURAL_MANY_COUNT, default: nil)
+      default ||= begin
+        s = resource_name.to_s
+        s = s.pluralize unless count == 1
+        s.titleize
+      end
+
       class_from_resource(resource_name).
         model_name.
         human(
-          count: PLURAL_MANY_COUNT,
-          default: resource_name.to_s.pluralize.titleize,
+          count: count,
+          default: default
         )
     end
 

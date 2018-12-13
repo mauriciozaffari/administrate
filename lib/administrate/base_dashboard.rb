@@ -55,7 +55,7 @@ module Administrate
     end
 
     def display_resource(resource)
-      "#{resource.class} ##{resource.id}"
+      "#{resource.model_name.human} ##{resource.id}"
     end
 
     def association_includes
