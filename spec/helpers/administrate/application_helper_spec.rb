@@ -32,6 +32,12 @@ RSpec.describe Administrate::ApplicationHelper do
       expect(displayed).to eq("Customers")
     end
 
+    it "handles namespaced resources" do
+      displayed = display_resource_name(:blog__post)
+
+      expect(displayed).to eq("Blog Posts")
+    end
+
     context "when translations are defined" do
       before do
         @translations = {

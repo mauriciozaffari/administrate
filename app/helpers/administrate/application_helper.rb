@@ -8,14 +8,14 @@ module Administrate
     end
 
     def class_from_resource(resource_name)
-      resource_name.to_s.classify.constantize
+      resource_name.to_s.split("__").map(&:classify).join("::").constantize
     end
 
     def display_resource_name(resource_name, count: PLURAL_COUNT, default: nil)
       default ||= begin
         s = resource_name.to_s
         s = s.pluralize unless count == 1
-        s.titleize
+        s.titleize.squish
       end
 
       class_from_resource(resource_name).
