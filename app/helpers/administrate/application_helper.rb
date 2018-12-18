@@ -13,7 +13,7 @@ module Administrate
 
     def display_resource_name(resource_name, count: PLURAL_COUNT, default: nil)
       default ||= begin
-        s = resource_name.to_s
+        s = resource_name.to_s.singularize
         s = s.pluralize unless count == 1
         s.titleize.squish
       end
